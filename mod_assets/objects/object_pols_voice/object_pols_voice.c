@@ -1,0 +1,6 @@
+#include "pols_voice_skel.c"
+#include "pols_voice_anim_idle.c"
+#include "pols_voice_anim_hop.c"
+#include "pols_voice_anim_grab.c"
+#include "pols_voice_anim_damaged.c"
+#include "pols_voice_anim_die.c"
