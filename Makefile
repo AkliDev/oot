@@ -45,7 +45,7 @@ RUN_CC_CHECK ?= 1
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH indicates missing dependencies.
 MIPS_BINUTILS_PREFIX ?= mips-linux-gnu-
 # Emulator w/ flags for 'make run'.
-N64_EMULATOR ?=
+N64_EMULATOR ?= '/mnt/e/Games/Emulators/Project64/Project64.exe'
 # Set to override game region in the ROM header (options: JP, US, EU). This can be used to build a fake US version
 # of the debug ROM for better emulator compatibility, or to build US versions of NTSC N64 ROMs.
 REGION = US
@@ -556,7 +556,6 @@ endif
 .PHONY: all build rom compress
 
 all:
-	@echo "Running Python script..."
 	python3 install_mod_assets.py
 	make -j$(nproc) build
 
@@ -617,11 +616,12 @@ disasm:
 	$(RM) -r $(EXPECTED_DIR)
 	VERSION=$(VERSION) DISASM_BASEROM=$(BASEROM_DIR)/baserom-decompressed.z64 DISASM_DIR=$(EXPECTED_DIR) PYTHON=$(PYTHON) AS_CMD='$(AS) $(ASFLAGS)' LD=$(LD) ./tools/disasm/do_disasm.sh
 
-run: $(ROM)
+run: 
+	make all -j$(nproc)
 ifeq ($(N64_EMULATOR),)
 	$(error Emulator path not set. Set N64_EMULATOR in the Makefile or define it as an environment variable)
 endif
-	$(N64_EMULATOR) $<
+	$(N64_EMULATOR) $(ROM)
 
 
 .PHONY: all rom compress clean assetclean distclean venv setup disasm run

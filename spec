@@ -10647,6 +10647,14 @@ beginseg
 endseg
 
 beginseg
+    name "object_gi_feather"
+    compress
+    romalign 0x1000
+    include "$(BUILD_DIR)/assets/objects/object_gi_feather/object_gi_feather.o"
+    number 6
+endseg
+
+beginseg
     name "g_pn_01"
     compress
     romalign 0x1000

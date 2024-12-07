@@ -708,7 +708,8 @@ static GetItemEntry sGetItemTable[] = {
     // GI_FARORES_WIND
     GET_ITEM(ITEM_FARORES_WIND, OBJECT_GI_GODDESS, GID_FARORES_WIND, 0xAE, 0x80, CHEST_ANIM_LONG),
     // GI_NAYRUS_LOVE
-    GET_ITEM(ITEM_NAYRUS_LOVE, OBJECT_GI_GODDESS, GID_NAYRUS_LOVE, 0xAF, 0x80, CHEST_ANIM_LONG),
+    //GET_ITEM(ITEM_NAYRUS_LOVE, OBJECT_GI_GODDESS, GID_NAYRUS_LOVE, 0xAF, 0x80, CHEST_ANIM_LONG),
+    GET_ITEM(ITEM_NAYRUS_LOVE, OBJECT_GI_FEATHER, GID_NAYRUS_LOVE, 0xAF, 0x80, CHEST_ANIM_LONG),
     // GI_BULLET_BAG_30
     GET_ITEM(ITEM_BULLET_BAG_30, OBJECT_GI_DEKUPOUCH, GID_BULLET_BAG, 0x07, 0x80, CHEST_ANIM_LONG),
     // GI_BULLET_BAG_40
@@ -5927,7 +5928,7 @@ void func_8083AE40(Player* this, s16 objectId) {
         size = gObjectTable[objectId].vromEnd - gObjectTable[objectId].vromStart;
 
         LOG_HEX("size", size, "../z_player.c", 9090);
-        ASSERT(size <= 1024 * 8, "size <= 1024 * 8", "../z_player.c", 9091);
+        //ASSERT(size <= 1024 * 8, "size <= 1024 * 8", "../z_player.c", 9091);
 
         DMA_REQUEST_ASYNC(&this->giObjectDmaRequest, this->giObjectSegment, gObjectTable[objectId].vromStart, size, 0,
                           &this->giObjectLoadQueue, NULL, "../z_player.c", 9099);
@@ -10691,7 +10692,7 @@ void Player_Init(Actor* thisx, PlayState* play2) {
     // get item objects is 0x2000 (see the assert in func_8083AE40), and the maximum size for
     // title cards is 0x1000 * LANGUAGE_MAX since each title card image includes all languages.
     this->giObjectSegment =
-        (void*)(((uintptr_t)ZELDA_ARENA_MALLOC(0x1000 * LANGUAGE_MAX + 8, "../z_player.c", 17175) + 8) & ~0xF);
+        (void*)(((uintptr_t)ZELDA_ARENA_MALLOC(4 * 0x1000 * LANGUAGE_MAX + 8, "../z_player.c", 17175) + 8) & ~0xF);
 
     respawnFlag = gSaveContext.respawnFlag;
 
