@@ -1,3 +1,5 @@
+//#include "text/message_data.h"
+
 DEFINE_MESSAGE(0x0001, TEXTBOX_TYPE_BLUE, TEXTBOX_POS_BOTTOM,
 MSG(/* MISSING */)
 ,
@@ -4995,25 +4997,15 @@ DEFINE_MESSAGE(0x00AF, TEXTBOX_TYPE_BLUE, TEXTBOX_POS_BOTTOM,
 MSG(/* MISSING */)
 ,
 MSG(
-UNSKIPPABLE ITEM_ICON(ITEM_NAYRUS_LOVE) QUICKTEXT_ENABLE "You got " COLOR(BLUE) "Nayru's Love" COLOR(DEFAULT) "!" QUICKTEXT_DISABLE "\n"
-"Cast this to create a powerful\n"
-"protective barrier. It's defensive \n"
-"magic you can use with " COLOR(YELLOW) "[C]" COLOR(DEFAULT) "."
+UNSKIPPABLE ITEM_ICON(ITEM_NAYRUS_LOVE) QUICKTEXT_ENABLE "You found the " COLOR(BLUE) "Roc's Feather" COLOR(DEFAULT) "!" QUICKTEXT_DISABLE "\n"
+"You feel lighter already! Equip\n"
+"it to " COLOR(YELLOW) "[C]" COLOR(DEFAULT) " to jump with a\n"
+"gust of wind, even in the air!\n"
 )
 ,
-MSG(
-UNSKIPPABLE ITEM_ICON(ITEM_NAYRUS_LOVE) QUICKTEXT_ENABLE COLOR(BLUE) "Nayrus Umarmung" COLOR(DEFAULT) "!" QUICKTEXT_DISABLE "\n"
-"Setze diese kraftvolle,\n"
-"magische Schutzaura\n"
-"mit " COLOR(YELLOW) "[C]" COLOR(DEFAULT) " ein."
-)
+MSG("german")
 ,
-MSG(
-UNSKIPPABLE ITEM_ICON(ITEM_NAYRUS_LOVE) QUICKTEXT_ENABLE "Vous recevez l'" COLOR(BLUE) "Amour de \n"
-"Nayru" COLOR(DEFAULT) "!" QUICKTEXT_DISABLE " Lancez ce sort avec\n"
-COLOR(YELLOW) "[C] " COLOR(DEFAULT) "pour invoquer une \n"
-"puissante barrière protectrice."
-)
+MSG("french")
 )
 
 DEFINE_MESSAGE(0x00B0, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_BOTTOM,
@@ -62606,3 +62598,40 @@ MSG(
 "On va te faire un bon prix!"
 )
 )
+
+
+/*
+ * The following two messages should be kept last and in this order.
+ * Message 0xFFFD must be last to not break the message debugger (see R_MESSAGE_DEBUGGER_TEXTID).
+ * Message 0xFFFC must be immediately before message 0xFFFD to not break Font_LoadOrderedFont.
+ */
+DEFINE_MESSAGE_FFFC(0xFFFC, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
+MSG(
+"０１２３４５６７８９あいうえおかきくけこ\n"
+"さしすせそたちつてとなにぬねのはひふへほ\n"
+"まみむめもやゆよらりるれろわをんぁぃぅぇ\n"
+"ぉっゃゅょがぎぐげござじずぜぞだぢづでど\n"
+"ばびぶべぼぱぴぷぺぽアイウエオカキクケコ\n"
+"サシスセソタチツテトナニヌネノハヒフヘホ\n"
+"マミムメモヤユヨラリルレロワヲンァィゥェ\n"
+"ォッャュョガギグゲゴザジズゼゾダヂヅデド\n"
+"バビブベボパピプペポヴＡＢＣＤＥＦＧＨＩ\n"
+"ＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃ\n"
+"ｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗ\n"
+"ｘｙｚ　┯？！：−（）゛゜，．／"
+)
+,
+MSG(
+"0123456789\n"
+"ABCDEFGHIJKLMN\n"
+"OPQRSTUVWXYZ\n"
+"abcdefghijklmn\n"
+"opqrstuvwxyz\n"
+" -.\n"
+)
+,
+MSG(/* UNUSED */)
+,
+MSG(/* UNUSED */)
+)
+DEFINE_MESSAGE(0xFFFD, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE, MSG(), MSG(), MSG(), MSG())

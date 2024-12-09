@@ -362,6 +362,7 @@ beginseg
     romalign 0x1000
 #endif
     include "$(BUILD_DIR)/assets/misc/link_animetion/link_animetion.o"
+    include "$(BUILD_DIR)/assets/misc/link_anims/link_anims.o"
     number 7
 endseg
 
@@ -7581,6 +7582,13 @@ beginseg
     include "$(BUILD_DIR)/src/overlays/actors/ovl_Pols_Voice/ovl_Pols_Voice_reloc.o"
 endseg
 
+beginseg
+    name "ovl_Tree_Elevator"
+    compress
+    include "$(BUILD_DIR)/src/overlays/actors/ovl_Tree_Elevator/z_tree_elevator.o"
+    include "$(BUILD_DIR)/src/overlays/actors/ovl_Tree_Elevator/ovl_Tree_Elevator_reloc.o"
+endseg
+
 #endif
 
 beginseg
@@ -7588,6 +7596,7 @@ beginseg
     compress
     romalign 0x1000
     include "$(BUILD_DIR)/assets/objects/gameplay_keep/gameplay_keep.o"
+    include "$(BUILD_DIR)/assets/objects/mod_gameplay_keep/mod_gameplay_keep.o"
     number 4
 endseg
 
@@ -10651,6 +10660,15 @@ beginseg
     compress
     romalign 0x1000
     include "$(BUILD_DIR)/assets/objects/object_gi_feather/object_gi_feather.o"
+    number 6
+endseg
+
+beginseg
+    name "object_tree_elevator"
+    compress
+    romalign 0x1000
+    include "$(BUILD_DIR)/assets/objects/object_tree_elevator/gTreeElevatorDL.o"
+    include "$(BUILD_DIR)/assets/objects/object_tree_elevator/gTreeElevatorDL_collision.o"
     number 6
 endseg
 

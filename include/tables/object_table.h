@@ -410,4 +410,5 @@
 /* 0x0190 */ DEFINE_OBJECT(object_timeblock, OBJECT_TIMEBLOCK)
 /* 0x0191 */ DEFINE_OBJECT(object_zl4, OBJECT_ZL4)
              DEFINE_OBJECT(object_pols_voice, OBJECT_POLS_VOICE)
-            DEFINE_OBJECT(object_gi_feather, OBJECT_GI_FEATHER)
+             DEFINE_OBJECT(object_gi_feather, OBJECT_GI_FEATHER)
+             DEFINE_OBJECT(object_tree_elevator, OBJECT_TREE_ELEVATOR)

@@ -4,8 +4,8 @@
 /**
  * Header Child Day (Default)
 */
-#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_OBJECTLIST 2
-#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_ACTORLIST 2
+#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_OBJECTLIST 3
+#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_ACTORLIST 3
 SceneCmd my_dungeon_room_0_header00[] = {
     SCENE_CMD_ROOM_SHAPE(&my_dungeon_room_0_shapeHeader),
     SCENE_CMD_ECHO_SETTINGS(0x00),
@@ -19,6 +19,7 @@ SceneCmd my_dungeon_room_0_header00[] = {
 
 s16 my_dungeon_room_0_header00_objectList[LENGTH_MY_DUNGEON_ROOM_0_HEADER00_OBJECTLIST] = {
     OBJECT_POLS_VOICE,
+    OBJECT_TREE_ELEVATOR,
     OBJECT_BOX,
 };
 
@@ -35,6 +36,14 @@ ActorEntry my_dungeon_room_0_header00_actorList[LENGTH_MY_DUNGEON_ROOM_0_HEADER0
     {
         /* Actor ID   */ ACTOR_POLS_VOICE,
         /* Position   */ { 224, -120, 183 },
+        /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
+        /* Parameters */ 0x0000
+    },
+
+    // Custom Actor
+    {
+        /* Actor ID   */ ACTOR_TREE_ELEVATOR,
+        /* Position   */ { 482, -120, 298 },
         /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
         /* Parameters */ 0x0000
     },

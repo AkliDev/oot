@@ -1,0 +1,12 @@
+extern u64 gTreeElevatorDL_wood_64x64_ci4_ci4[];
+extern u64 gTreeElevatorDL_wood_64x64_ci4_pal_rgba16[];
+extern u64 gTreeElevatorDL_cut_wood_32x32_rgba32_ci8[];
+extern u64 gTreeElevatorDL_cut_wood_32x32_rgba32_pal_rgba16[];
+extern Vtx gTreeElevatorDL_gTreeElevatorDL_mesh_layer_Opaque_vtx_cull[8];
+extern Vtx gTreeElevatorDL_gTreeElevatorDL_mesh_layer_Opaque_vtx_0[18];
+extern Gfx gTreeElevatorDL_gTreeElevatorDL_mesh_layer_Opaque_tri_0[];
+extern Vtx gTreeElevatorDL_gTreeElevatorDL_mesh_layer_Opaque_vtx_1[9];
+extern Gfx gTreeElevatorDL_gTreeElevatorDL_mesh_layer_Opaque_tri_1[];
+extern Gfx mat_gTreeElevatorDL_bark_layerOpaque[];
+extern Gfx mat_gTreeElevatorDL_wood_cut_layerOpaque[];
+extern Gfx gTreeElevatorDL[];
