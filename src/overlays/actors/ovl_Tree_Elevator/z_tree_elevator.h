@@ -7,7 +7,7 @@
 struct TreeElevator;
 
 typedef struct TreeElevator {
-    /* 0x0000 */ Actor actor;
+    DynaPolyActor dyna;
 } TreeElevator; 
 
 #endif
