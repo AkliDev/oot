@@ -1088,6 +1088,8 @@ skip:
     PLAY_LOG(3816);
     Environment_Update(this, &this->envCtx, &this->lightCtx, &this->pauseCtx, &this->msgCtx, &this->gameOverCtx,
                        this->state.gfxCtx);
+    
+    Debug_Print_Draw(this->state.gfxCtx);
 }
 
 void Play_DrawOverlayElements(PlayState* this) {

@@ -711,6 +711,7 @@ beginseg
 #if OOT_DEBUG
     include "$(BUILD_DIR)/src/code/ucode_disas.o"
 #endif
+    include "$(BUILD_DIR)/src/code/debug_util.o"
 #if OOT_VERSION < NTSC_1_1 || PLATFORM_GC
     pad_text
 #endif

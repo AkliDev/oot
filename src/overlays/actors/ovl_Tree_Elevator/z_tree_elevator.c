@@ -9,7 +9,6 @@
 #include "assets/objects/object_tree_elevator/gTreeElevatorDL.h"
 #include "assets/objects/object_tree_elevator/gTreeElevatorDL_collision.h"
 
-
 #define FLAGS (ACTOR_FLAG_4 | ACTOR_FLAG_5)
 
 void TreeEvator_Init(Actor* thisx, PlayState* play);
@@ -17,7 +16,10 @@ void TreeEvator_Destroy(Actor* thisx, PlayState* play);
 void TreeEvator_Update(Actor* thisx, PlayState* play);
 void TreeEvator_Draw(Actor* thisx, PlayState* play);
 
-void TreeElevator_SpawnDust(TreeElevator* thisx, PlayState* play);
+void TreeElevator_SpawnDust(TreeElevator* this, PlayState* play);
+
+void TreeElevator_SetupWaitForSwith(TreeElevator* this, PlayState* play);
+void TreeElevator_WaitForSwitch(TreeElevator* this, PlayState* play);
 
 ActorProfile Tree_Elevator_Profile = {
     ACTOR_TREE_ELEVATOR,
@@ -39,6 +41,10 @@ void TreeEvator_Init(Actor* thisx, PlayState* play){
     CollisionHeader_GetVirtual(&gTreeElevatorDL_collisionHeader, &colHeader);
 
     this->dyna.bgId = DynaPoly_SetBgActor(play, &play->colCtx.dyna, &this->dyna.actor, colHeader);
+
+    TreeElevator_SetupWaitForSwith(this, play);
+
+    Debug_Print(4, "Init: my id is: %d", this->dyna.bgId);
 }
 
 void TreeEvator_Destroy(Actor* thisx, PlayState* play){
@@ -50,7 +56,8 @@ void TreeEvator_Destroy(Actor* thisx, PlayState* play){
 
 void TreeEvator_Update(Actor* thisx, PlayState* play){
     TreeElevator* this = (TreeElevator*)thisx;
-    TreeElevator_SpawnDust(this, play);
+    Debug_Print(0, "Hello from update");
+    this->actionFunc(this, play);
 }
 
 void TreeEvator_Draw(Actor* thisx, PlayState* play){
@@ -58,8 +65,7 @@ void TreeEvator_Draw(Actor* thisx, PlayState* play){
     Gfx_DrawDListOpa(play, gTreeElevatorDL);
 }
 
-void TreeElevator_SpawnDust(TreeElevator* thisx, PlayState* play){
-    TreeElevator* this = (TreeElevator*)thisx;
+void TreeElevator_SpawnDust(TreeElevator* this, PlayState* play){
 
     Color_RGBA8 primColor = {255,255,255,255};
     Color_RGBA8 envColor = {255,255,255,255};
@@ -72,4 +78,13 @@ void TreeElevator_SpawnDust(TreeElevator* thisx, PlayState* play){
     s16 life = 40;
 
     EffectSsDust_Spawn(play, 0, &pos, &velocity, &accel, &primColor, &envColor, scale, scaleStep, life, 0);
+}
+
+void TreeElevator_SetupWaitForSwith(TreeElevator* this, PlayState* play){
+    this->actionFunc = TreeElevator_WaitForSwitch;
+}
+
+void TreeElevator_WaitForSwitch(TreeElevator* this, PlayState* play){
+    Debug_Print(1, "current frame %u", play->gameplayFrames);
+    TreeElevator_SpawnDust(this, play);
 }

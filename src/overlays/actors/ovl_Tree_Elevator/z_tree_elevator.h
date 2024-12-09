@@ -6,8 +6,12 @@
 
 struct TreeElevator;
 
+typedef void (*TreeElevatorActionFunc)(struct TreeElevator*, PlayState*);
+
+
 typedef struct TreeElevator {
     DynaPolyActor dyna;
+    TreeElevatorActionFunc actionFunc;
 } TreeElevator; 
 
 #endif
