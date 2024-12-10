@@ -7590,6 +7590,13 @@ beginseg
     include "$(BUILD_DIR)/src/overlays/actors/ovl_Tree_Elevator/ovl_Tree_Elevator_reloc.o"
 endseg
 
+beginseg
+    name "ovl_Npc_Test"
+    compress
+    include "$(BUILD_DIR)/src/overlays/actors/ovl_Npc_Test/z_npc_test.o"
+    include "$(BUILD_DIR)/src/overlays/actors/ovl_Npc_Test/ovl_Npc_Test_reloc.o"
+endseg
+
 #endif
 
 beginseg

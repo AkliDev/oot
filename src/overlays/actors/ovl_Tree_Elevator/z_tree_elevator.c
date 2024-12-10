@@ -58,7 +58,7 @@ void TreeEvator_Init(Actor* thisx, PlayState* play){
 
     TreeElevator_SetupWaitForSwitch(this, play);
 
-    Debug_Print(4, "Init: my id is: %d", this->dyna.bgId);
+    //Debug_Print(4, "Init: my id is: %d", this->dyna.bgId);
 }
 
 void TreeEvator_Destroy(Actor* thisx, PlayState* play){
@@ -139,13 +139,12 @@ void TreeElevator_WaitForSwitch(TreeElevator* this, PlayState* play){
 }
 
 void TreeElevator_SetupRaise(TreeElevator* this, PlayState* play){
-    Debug_Print(0, "TreeElevator_SetupRaise");
     this->timer = TREE_ELEVATOR_TRAVEL_DURATION;
     this->actionFunc = TreeElevator_Raise;
 }
 
 void TreeElevator_Raise(TreeElevator* this, PlayState* play){
-    Debug_Print(1, "In Raise %d", this->timer);
+    //Debug_Print(1, "In Raise %d", this->timer);
 
     f32 step = (TREE_ELEVATOR_TRAVEL_DURATION - this->timer) / ((f32)TREE_ELEVATOR_TRAVEL_DURATION);
     f32 offset = TREE_ELEVATOR_MAX_HEIGT * TreeElevator_SmoothStep(step);
@@ -163,7 +162,7 @@ void TreeElevator_Raise(TreeElevator* this, PlayState* play){
 }
 
 void TreeElevator_SetupWaitToLower(TreeElevator* this, PlayState* play){
-    Debug_Print(0, "TreeElevator_SetupWaitToLower");
+    //Debug_Print(0, "TreeElevator_SetupWaitToLower");
 
     this->dyna.actor.world.pos.y = this->dyna.actor.home.pos.y + TREE_ELEVATOR_MAX_HEIGT;
 
@@ -186,7 +185,7 @@ void TreeElevator_SetupLower(TreeElevator* this, PlayState* play){
 }
 
 void TreeElevator_Lower(TreeElevator* this, PlayState* play){
-    Debug_Print(1, "In Lower %d", this->timer);
+    //Debug_Print(1, "In Lower %d", this->timer);
 
     f32 step = (this->timer) / ((f32)TREE_ELEVATOR_TRAVEL_DURATION);
     f32 offset = TREE_ELEVATOR_MAX_HEIGT * TreeElevator_SmoothStep(step);
