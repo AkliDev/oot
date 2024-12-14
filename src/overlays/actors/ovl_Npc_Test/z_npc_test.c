@@ -17,14 +17,14 @@ void NpcTest_Draw(Actor* thisx, PlayState* play);
 void NpcTest_InitCollider(Actor* thisx, PlayState* play);
 void NpcTest_UpdateCollider(NpcTest* this, PlayState* play);
 
-u16 NpcTest_GetNextTextId(PlayState* play, Actor* thisx);
-s16 NpcTest_UpdateTalkState(PlayState* play, Actor* thisx);
-
 void NpcTest_DrawSolid(NpcTest* this, PlayState* play);
 s32 NpcTest_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx);
 void NpcTest_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx);
 
 void NpcTest_UpdateBgCheckInfo(NpcTest* this, PlayState* play);
+
+u16 NpcTest_GetNextTextId(PlayState* play, Actor* thisx);
+s16 NpcTest_UpdateTalkState(PlayState* play, Actor* thisx);
 
 static ColliderCylinderInitType1 sCylinderInit = {
     {
@@ -39,11 +39,11 @@ static ColliderCylinderInitType1 sCylinderInit = {
 };
 
 typedef enum {
-    NPC_MESSAGE_1 = 0x71B3,
-    NPC_MESSAGE_2 = 0x71B4,
-    NPC_MESSAGE_3 = 0x71B5,
-    NPC_MESSAGE_4 = 0x71B6,
-    NPC_MESSAGE_5 = 0x71B7,
+    NPC_MESSAGE_COME_BACK_LATER = 0x71B3,
+    NPC_MESSAGE_COME_BACK_WAY_LATER = 0x71B4,
+    NPC_MESSAGE_DO_YOU_LIKE_TUTORIALS = 0x71B5,
+    NPC_MESSAGE_CHOICE_LOVE_EM = 0x71B6,
+    NPC_MESSAGE_CHOICE_ABSOLUTELY = 0x71B7,
 } NpcTestMeddageId;
 
 ActorProfile Npc_Test_Profile = {
@@ -115,14 +115,6 @@ void NpcTest_UpdateCollider(NpcTest* this, PlayState* play) {
     CollisionCheck_SetOC(play, &play->colChkCtx, &this->collider.base);
 }
 
-u16 NpcTest_GetNextTextId(PlayState* play, Actor* thisx){
-    return NPC_MESSAGE_1;
-}
-
-s16 NpcTest_UpdateTalkState(PlayState* play, Actor* thisx){
-    return NPC_TALK_STATE_IDLE;
-}
-
 void NpcTest_DrawSolid(NpcTest* this, PlayState* play) {
     //s32 pad[2];
     //s16 eyeIndex = this->eyeIndex;
@@ -191,4 +183,43 @@ void NpcTest_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* ro
 
 void NpcTest_UpdateBgCheckInfo(NpcTest* this, PlayState* play) {
     Actor_UpdateBgCheckInfo(play, &this->actor, 75.0f, 30.0f, 30.0f, UPDBGCHECKINFO_FLAG_0 | UPDBGCHECKINFO_FLAG_2);
+}
+
+u16 NpcTest_GetNextTextId(PlayState* play, Actor* thisx){
+    if(LINK_IS_ADULT){
+        return NPC_MESSAGE_DO_YOU_LIKE_TUTORIALS;
+    } else {
+        if(GET_INFTABLE(INFTABLE_E0)){
+            return NPC_MESSAGE_COME_BACK_WAY_LATER;
+        } else {
+            return NPC_MESSAGE_COME_BACK_LATER;
+        }   
+    }
+    
+}
+
+s16 NpcTest_UpdateTalkState(PlayState* play, Actor* thisx){
+    s16 talkState = NPC_TALK_STATE_TALKING;
+    
+    switch (Message_GetState(&play->msgCtx)){
+        case TEXT_STATE_CHOICE:
+            if (Message_ShouldAdvance(play)){
+                if(play->msgCtx.choiceIndex == 0){
+                    thisx->textId = NPC_MESSAGE_CHOICE_LOVE_EM;
+                } else if (play->msgCtx.choiceIndex == 1){
+                    thisx->textId = NPC_MESSAGE_CHOICE_ABSOLUTELY;
+                }        
+                Message_ContinueTextbox(play, thisx->textId);
+            }
+            break;
+
+        case TEXT_STATE_DONE:
+            if (thisx->textId == NPC_MESSAGE_COME_BACK_LATER){
+                SET_INFTABLE(INFTABLE_E0);
+            }
+            talkState = NPC_TALK_STATE_IDLE;
+            break;
+    }
+
+    return talkState;
 }

@@ -4,7 +4,7 @@ DEFINE_MESSAGE(0x71B3, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
 MSG(/* MISSING */)
 ,
 MSG(
-"Messege 1\n"
+"Come back later...\n"
 )
 ,
 MSG("german"), MSG("french\n")
@@ -14,7 +14,7 @@ DEFINE_MESSAGE(0x71B4, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
 MSG(/* MISSING */)
 ,
 MSG(
-"Messege 2\n"
+"I meant WAY later.\n"
 )
 ,
 MSG("german"), MSG("french\n")
@@ -24,7 +24,11 @@ DEFINE_MESSAGE(0x71B5, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
 MSG(/* MISSING */)
 ,
 MSG(
-"Messege 3\n"
+"Do you like these tutorials?\n"
+"\n"
+TWO_CHOICE
+    COLOR(ADJUSTABLE) "I love 'em!\n"
+    "Absolutely" COLOR(DEFAULT)
 )
 ,
 MSG("german"), MSG("french\n")
@@ -34,7 +38,7 @@ DEFINE_MESSAGE(0x71B6, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
 MSG(/* MISSING */)
 ,
 MSG(
-"Messege 4\n"
+"Good to to hear.\n"
 )
 ,
 MSG("german"), MSG("french\n")
@@ -44,7 +48,7 @@ DEFINE_MESSAGE(0x71B7, TEXTBOX_TYPE_BLACK, TEXTBOX_POS_VARIABLE,
 MSG(/* MISSING */)
 ,
 MSG(
-"Messege 5\n"
+"OK\n"
 )
 ,
 MSG("german"), MSG("french\n")
